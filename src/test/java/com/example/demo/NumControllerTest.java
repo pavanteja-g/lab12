@@ -11,24 +11,18 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(NumController.class)
-
+@WebMvcTest(NumberController.class)
 public class NumControllerTest {
 
     @Autowired
-    private MockMvc MockMvc;
-    @Autowired
-    private org.springframework.test.web.servlet.MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Test
     public void testDoubleNumber() throws Exception{
-
-        mockMvc.perform(get("/greeting?num=7"))
+        this.mockMvc.perform(get("/double")
+                        .param("num","7"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("14"));
     }
-
-
-
 
 }

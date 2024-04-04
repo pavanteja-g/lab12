@@ -19,14 +19,14 @@ class GETRequestTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void TestDoubleNumber() {
+    public void TestDoubleNumber() throws Exception{
 
         int inputNumber= 5;
 
-        ResponseEntity<Integer> response = restTemplate.getForEntity("/greeting?number={number}", Integer.class, inputNumber);
+        ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:"+port+"/double?num=5",String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isEqualTo(10);
+       assertThat(response.getBody()).isEqualTo("10");
 
 
     }
